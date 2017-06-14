@@ -1,0 +1,7 @@
+<div class="csc-section-container">
+	<div class="{f:if(condition:'{0:flexform_background} == {0:"highlight"}', then:'stripe-neutral ', else:'')}{f:if(condition:'{0:flexform_appearance} == {0:"wide"}', then:'stripe-break ', else:'')}">
+		<f:for each="{content}" as="el">
+			<f:format.raw>{el}</f:format.raw>
+		</f:for>
+	</div>
+</div>

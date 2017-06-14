@@ -1,0 +1,22 @@
+{namespace c=CIC\Cicbase\ViewHelpers}
+
+<div class="stripe-neutral stripe-break no-print">
+	<h3 class="heading-tertiary">{header}</h3>
+	<ul class="article-list-splash-wide-slider" data-content-slider>
+		<f:for each="{settings.resource}" as="resource">
+			<li>
+				<div class="article-list-splash-wide" style="
+					background-image: url('/{resource.data.image}');
+					background: url('/typo3conf/ext/t3site/Resources/Assets/Style/Images/block-splash-overlay50.png') repeat,
+					url('/{resource.data.image}') 50% 50% / cover">
+
+				<div class="article-list-splash-wide-content">
+						<h3 class="heading-secondary">{resource.data.title}</h3>
+						<p>{resource.data.description}</p>
+						<p><c:typolink parameter="{resource.data.buttonLink}" ATagParams="class='button-short-secondary'">{resource.data.buttonText}</c:typolink></p>
+					</div>
+				</div>
+			</li>
+		</f:for>
+	</ul>
+</div>

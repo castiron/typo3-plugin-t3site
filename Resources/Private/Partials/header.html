@@ -1,0 +1,22 @@
+  <f:comment>
+  <!--
+    Container tray sits on top of the primary menu for wide-screens, then contains the tray overflow
+    on narrower screens
+  -->
+  </f:comment>
+  <div class="container-tray" data-nav>
+    <div class="tray">
+      <f:render partial="navigation/responsive"/>
+      <f:comment>
+      <!--
+        .nav-primary-aside persists on the front-end and moves
+        from the top to the tray UI to to keep the same search bar. There is no cloned element
+      -->
+      </f:comment>
+      <nav class="nav-primary-aside">
+        <f:render partial="header/search" />
+      </nav>
+    </div>
+  </div>
+
+  <f:render partial="navigation/top" />

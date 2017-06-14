@@ -1,0 +1,84 @@
+##############
+# Gridelements
+##############
+tx_gridelements.setup {
+	1 {
+		title = Section
+		description = A container for content elements that will be grouped together
+		flexformDS = FILE:EXT:t3site/Configuration/FlexForms/Gridelements/section.xml
+		config {
+			colCount = 1
+			rowCount = 1
+			rows {
+				1 {
+					columns {
+						1 {
+							name = Content
+							colPos = 0
+						}
+					}
+				}
+			}
+		}
+	}
+	2 {
+		title = Callout
+		description = A container that makes content float as a callout to the left or right
+		flexformDS = FILE:EXT:t3site/Configuration/FlexForms/Gridelements/callout.xml
+		config {
+			colCount = 1
+			rowCount = 1
+			rows {
+				1 {
+					columns {
+						1 {
+							name = Content
+							colPos = 0
+						}
+					}
+				}
+			}
+		}
+	}
+	3 {
+		title = Two-column Container
+		description = A container with left and right columns
+		config {
+			colCount = 2
+			rowCount = 1
+			rows {
+				1 {
+					columns {
+						1 {
+							name = Left Content
+							colPos = 0
+						}
+						2 {
+							name = Right Content
+							colPos = 1
+						}
+					}
+				}
+			}
+		}
+	}
+	#999 {
+	#	title = An Extbase-controlled gridelement
+	#	description = This is an example grid element type controlled by extbase
+	#	#flexformDS = FILE:EXT:t3site/Configuration/FlexForms/Gridelements/whatever.xml
+	#	config {
+	#		colCount = 1
+	#		rowCount = 1
+	#		rows {
+	#			1 {
+	#				columns {
+	#					1 {
+	#						name = Main
+	#						colPos = 1
+	#					}
+	#				}
+	#			}
+	#		}
+	#	}
+	#}
+}

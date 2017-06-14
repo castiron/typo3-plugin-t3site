@@ -1,0 +1,13 @@
+<f:if condition="{constants.useTertiaryNav} == '1'">
+	<f:then>
+		<f:CObject typoscriptObjectPath="lib.tertiaryNav"/>
+	</f:then>
+	<f:else>
+		<f:CObject typoscriptObjectPath="lib.secondaryNav"/>
+	</f:else>
+</f:if>
+
+<f:comment>Currently, the mobileSubnav is only in use on current grantees pages.</f:comment>
+<f:if condition="{constants.useMobileSubnav} == '1'">
+	<f:CObject typoscriptObjectPath="lib.mobileSubnav" />
+</f:if>

@@ -1,0 +1,18 @@
+<!-- .nav-primary-search requires data-attributes to show and hide search input on wide-screens -->
+<div class="nav-primary-search" data-nav-search>
+	<button class="nav-primary-search-trigger" data-nav-search-trigger>
+		<i class="icon-magnify"></i>
+		<span class="screen-reader-text">Click to open the site search</span>
+	</button>
+	<form action="{f:uri.page(pageUid:'137')}" class="nav-primary-search-input" data-nav-search-input>
+		<!-- Search submission is used as a button for easier styling, but can be changed to <input> if necessary -->
+		<button type="submit" class="nav-primary-search-submit">
+			<div class="screen-reader-text">Click to submit search query</div>
+			<i class="icon-magnify"></i>
+		</button>
+		<input class="utility-input-small"
+			   type="text"
+			   placeholder="Search"
+			   name="tx_emcfsearch_search[query]" data-input-focus/>
+	</form>
+</div>

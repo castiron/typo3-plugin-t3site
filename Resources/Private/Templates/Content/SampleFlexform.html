@@ -1,0 +1,44 @@
+<div style="border: 1px solid #999; background-color: #CCC; padding: 10px; border-radius: 5px;">
+	<h2>Custom content example <br> Flexform Data</h2>
+
+	<h3>{header}</h3>
+	<h4>{subheader}</h4>
+
+	<f:link.page pageUid="{link}">
+		<span>{linkText}<em></em></span>
+	</f:link.page>
+
+	<f:format.html>{calloutText}</f:format.html>
+
+	<ul>
+		<li>
+			<f:link.page pageUid="{links.1.link}">
+				<span>{links.1.linkText}</span></f:link.page>
+		</li>
+		<li>
+			<f:link.page pageUid="{links.2.link}">
+				<span>{links.2.linkText}</span></f:link.page>
+		</li>
+		<li class="last">
+			<f:link.page pageUid="{links.3.link}">
+				<span>{links.3.linkText}</span></f:link.page>
+		</li>
+	</ul>
+
+	<h3>Repeating Flexform Element</h3>
+	<f:for each="{repeatingElement}" as="banana">
+		<h4>An Item</h4>
+		<ul>
+			<li>Title: {banana.data.title}</li>
+			<f:if condition="{banana.data.date1}">
+				<li>Date 1: <a href="{banana.data.dateLink1}">{banana.data.date1}</a></li>
+			</f:if>
+			<f:if condition="{banana.data.date2}">
+				<li>Date 2: <a href="{banana.data.dateLink2}">{banana.data.date2}</a></li>
+			</f:if>
+			<f:if condition="{banana.data.date3}">
+				<li>Date 3: <a href="{banana.data.dateLink3}">{banana.data.date3}</a></li>
+			</f:if>
+		</ul>
+	</f:for>
+</div>

@@ -1,0 +1,7 @@
+plugin.tx_t3site {
+	view {
+		templateRootPaths {
+			0 = {$plugin.tx_t3site.view.templateRootPath}
+		}
+	}
+}

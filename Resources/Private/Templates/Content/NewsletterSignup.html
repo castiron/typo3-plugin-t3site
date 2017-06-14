@@ -1,0 +1,106 @@
+{namespace c=CIC\Cicbase\ViewHelpers}
+{namespace t=CIC\T3site\ViewHelpers}
+<t:renderDefaultHeader />
+
+<f:comment>
+PREVIOUS IMPLEMENTATION:
+
+<div class="newsletter-signup">
+	<form id="emailSignupForm" class="form-primary" enctype="multipart/form-data" action="https://cloud.crm.powerobjects.net/powerWebFormV3/PowerWebFormData.aspx?t=jHUhEUsEEeSRnAAVXVm6EkUATQBDAEYA&formId=powf_57EDC431865AE51180C900155DBC6310&tver=2013&c=1" method="post">
+
+		<section class="form-primary-section">
+			<div class="container-grid">
+				<div class="container-gb-100">
+					<label class="form-primary-label-required form-primary-list-label" for="powf_9947cd64865ae51180c900155dbc6310">First Name</label>
+					<input type="text" id="powf_9947cd64865ae51180c900155dbc6310" name="powf_9947cd64865ae51180c900155dbc6310" value="" maxlength="100" class="required" required />
+				</div>
+				<div class="container-gb-100">
+					<label for="powf_2967b79b865ae51180c900155dbc6310">Middle Name</label>
+					<input type="text" id="powf_2967b79b865ae51180c900155dbc6310" name="powf_2967b79b865ae51180c900155dbc6310" value="" maxlength="100" />
+				</div>
+				<div class="container-gb-100">
+					<label for="powf_84950cb0865ae51180c900155dbc6310">Last Name <span class="required">*</span></label>
+					<input type="text" id="powf_84950cb0865ae51180c900155dbc6310" name="powf_84950cb0865ae51180c900155dbc6310" value="" maxlength="100" class="required" required />
+				</div>
+				<div class="container-gb-100">
+					<label for="powf_a1d3a5c6865ae51180c900155dbc6310">Email Address <span class="required">*</span></label>
+					<input type="email" id="powf_a1d3a5c6865ae51180c900155dbc6310" name="powf_a1d3a5c6865ae51180c900155dbc6310" value="{email}" maxlength="100" class="required" required />
+				</div>
+				<div class="container-gb-50">
+					<label for="powf_df73caf0865ae51180c900155dbc6310">Organization</label>
+					<input type="text" id="powf_df73caf0865ae51180c900155dbc6310" name="powf_df73caf0865ae51180c900155dbc6310" value="" maxlength="100" />
+				</div>
+				<div class="container-gb-50">
+					<label for="powf_e58587fd865ae51180c900155dbc6310">Title</label>
+					<input type="text" id="powf_e58587fd865ae51180c900155dbc6310" name="powf_e58587fd865ae51180c900155dbc6310" value="" maxlength="100" />
+				</div>
+			</div>
+		</section>
+
+		<section class="form-primary-section">
+			<div class="container-grid">
+				<div class="container-gb-100">
+					<h4 class="heading-tertiary" data-error-after-for="powf_bf57cd58875ae51180c900155dbc6310">What would you like to hear from EMCF about?</h4>
+					<div class="form-primary-checkgroup">
+						<label for="preference-1">
+							<input type="radio" checked name="powf_bf57cd58875ae51180c900155dbc6310" data-behavior="radio-check" data-radio-key="comms" id="preference-1" value="Major Announcements (occasional communications)" type="checkbox">
+							Major Announcements (occasional communication)<br>
+						</label>
+						<p>Messages from EMCF President Nancy Roob, announcements from EMCF, and new publications</p>
+					</div>
+					<div class="form-primary-checkgroup">
+						<label for="preference-2">
+							<input type="radio" name="powf_bf57cd58875ae51180c900155dbc6310" data-behavior="radio-check" data-radio-key="comms" id="preference-2" value="All Communications (approximately bi-monthly)">
+							All Communications (approximately bi-monthly)<br>
+						</label>
+						<p>All of the above, plus regular notifications of news about EMCF, our grantees and co-investors</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="form-primary-section">
+			<input class="button" type="submit" value="Submit" />
+			<input type="hidden" name="ignore_submitmessage" value="Thank you for subscribing!" />
+			<input type="hidden" name="ignore_linkbuttontext" value="Back to EMCF" />
+			<input type="hidden" name="ignore_redirecturl" value="{thankYouPageUrl}" />
+			<input type="hidden" name="ignore_redirectmode" value="Auto" />
+		</section>
+
+	</form>
+</div>
+</f:comment>
+
+<div class="newsletter-signup">
+	<form id="emailSignupForm" class="form-primary" enctype="multipart/form-data" action="http://emcf.us3.list-manage.com/subscribe/post" method="post">
+		<input type="hidden" name="u" value="53a223a8b7f13f32e9f854fc7">
+		<input type="hidden" name="id" value="e0674f0940">
+		<section class="form-primary-section">
+			<div class="container-grid">
+				<div class="container-gb-100">
+					<label>Email Address <span class="required">*</span></label>
+					<input type="email" id="MERGE0" name="MERGE0" value="" maxlength="100" class="required" required />
+				</div>
+				<div class="container-gb-100">
+					<label>First Name <span class="required">*</span></label>
+					<input type="text" id="MERGE1" name="MERGE1" value="" maxlength="100" class="required" required />
+				</div>
+				<div class="container-gb-100">
+					<label>Last Name <span class="required">*</span></label>
+					<input type="text" id="MERGE2" name="MERGE2" value="" maxlength="100" class="required" required />
+				</div>
+				<div class="container-gb-100">
+					<label>Organization</label>
+					<input type="text" id="MERGE3" name="MERGE3" value="" maxlength="100" />
+				</div>
+			</div>
+		</section>
+		<section class="form-primary-section">
+			<input class="button" type="submit" value="Subscribe" />
+			<input type="hidden" name="ignore_submitmessage" value="Thank you for subscribing!" />
+			<input type="hidden" name="ignore_linkbuttontext" value="Back to EMCF" />
+			<input type="hidden" name="ignore_redirecturl" value="http://www.emcf.org/newsletter-signup/thank-you/" />
+			<input type="hidden" name="ignore_redirectmode" value="Auto" />
+		</section>
+	</form>
+</div>

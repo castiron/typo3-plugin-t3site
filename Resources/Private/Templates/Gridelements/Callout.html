@@ -1,0 +1,7 @@
+<div class="csc-section-container">
+	<div class="{f:if(condition:'{0:flexform_position} == {0:"right"}', then:'callout-right ', else:'callout-left ')}{f:if(condition:'{0:flexform_background} == {0:"highlight"}', then:' callout-neutral ', else:'')}">
+	<f:for each="{content}" as="el">
+		<f:format.raw>{el}</f:format.raw>
+	</f:for>
+	</div>
+</div>

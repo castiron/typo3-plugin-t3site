@@ -1,0 +1,211 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:t3site/Configuration/Typoscript/Extension/gridelements_setup.txt">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:t3site/Configuration/Typoscript/Extension/fluidpage_setup.txt">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:t3site/Configuration/Typoscript/Extension/css_styled_content_setup.txt">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:t3site/Configuration/Typoscript/Extension/formhandler_setup.txt">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:t3site/Configuration/Typoscript/Extension/news_setup.txt">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:t3site/Configuration/Typoscript/Extension/solr_setup.txt">
+
+# Include custom content element typoscript
+<INCLUDE_TYPOSCRIPT: source="FILE:typo3conf/ext/t3site/Configuration/Typoscript/CustomContent/setup.txt">
+
+# On the news page, we want to include the article title
+# in the breadcrumb, which requires extra typoscript.
+[page|uid={$pid.newsSingle}]
+lib.breadcrumb {
+	10.1.NO.doNotLinkIt = 0
+	20 = RECORDS
+	20 {
+		dontCheckPid = 1
+		tables = tx_news_domain_model_news
+		source.data = GP:tx_news_pi1|news
+		source.intval = 1
+		conf.tx_news_domain_model_news = TEXT
+		conf.tx_news_domain_model_news {
+			field = title
+			htmlSpecialChars = 1
+	}
+	wrap = &nbsp;/&nbsp;|
+	}
+}
+
+[end]
+
+t3site.page_prototype = PAGE
+t3site.page_prototype {
+	# pageTitle: NB: page title is configured in seo_basics_setup.txt
+
+	typeNum = 0
+
+	# Unset the body tag, as it's is provided by the fluid template
+	bodyTagCObject = TEXT
+	bodyTagCObject.noTrimWrap = | | |
+
+	includeCSS {
+
+	}
+	includeJS {
+
+	}
+	includeJSFooterlibs {
+		# NOTE: js should generally be included by a partial (by default, "page_scripts.html")
+	}
+	includeJSFooter {
+		# NOTE: js should generally be included by a partial (by default, "page_scripts.html")
+	}
+	footerData {
+		# NOTE: js should generally be included by a partial (by default, "page_scripts.html")
+	}
+
+	meta {
+		viewport = width=device-width, initial-scale=1, user-scalable=0
+		description.field = description
+		keywords.field = keywords
+		author.field = author
+		abstract.field = abstract
+		copyright = TEXT
+		copyright {
+			data = date:U
+			strftime = %Y
+			wrap = ©|, My Organization
+		}
+	}
+
+	headerData {
+
+		# Favicon and mobile icon
+		10 = TEXT
+		10 {
+			value (
+				<link rel="shortcut icon" href="typo3conf/ext/{$theme.name}/Resources/Images/Icons/favicon.ico">
+				<link rel="apple-touch-icon" href="typo3conf/ext/{$theme.name}/Resources/Images/Icons/apple-touch-icon.png">
+			)
+		}
+
+		776 < plugin.tx_seobasics
+	}
+}
+
+lib.RSSNewsFeed < tt_content.list.20.news_pi1
+lib.RSSNewsFeed {
+	settings {
+		limit = 30
+		detailPid = {$pids.newsSingle}
+		startingPoint = {$pids.newsStorage}
+		format = xml
+	}
+	switchableControllerActions {
+		News {
+			1 = list
+		}
+	}
+}
+
+lib.RSSNewsFeedConfig {
+	disableAllHeaderCode = 1
+	xhtml_clearning = none
+	admPanel = 0
+	metaCharset = utf-8
+	additionalHeaders = Content-Type:text/xml;charset=utf-8
+	disablePrefixComment = 1
+	absRefPrefix = http://{$const.baseUrl}/
+}
+
+# Inserted mid-homepage via tsobj plugin
+lib.homepageSocial = COA
+lib.homepageSocial {
+	wrap = <div class="stripe-neutral-flush stripe-break no-print">|</div>
+	10 = TEXT
+	10 {
+		typolink.parameter = {$pid.newsletterSignup}
+		typolink.returnLast = url
+		wrap (
+
+			<div class="newsletter-signup-link">
+				<a href="|" class="button-inline-secondary button-arrow">Subscribe to EMCF News</a>
+			</div>
+		)
+	}
+	20 = COA
+	20 {
+		wrap = <nav class="stripe-container-right"><ul class="square-icon-list-tertiary">|</ul></nav>
+		100 = TEXT
+		100 {
+			wrap = <li>|</li>
+			preCObject = TEXT
+			preCObject.value = <div class="screen-reader-text">Follow EMCF on Twitter</div>
+			typolink.parameter = https://twitter.com/emclarkfdn _blank
+			postCObject = TEXT
+			postCObject.value = <i class="icon-twitter"></i>
+		}
+		200 < .100
+		200 {
+			preCObject.value = <div class="screen-reader-text">EMCF Youtube Channel</div>
+			typolink.parameter = https://www.youtube.com/user/EMCForg _blank
+			postCObject.value = <i class="icon-youtube"></i>
+		}
+		300 < .100
+		300 {
+			preCObject.value = <div class="screen-reader-text">Follow EMCF on Facebook</div>
+			typolink.parameter = https://www.facebook.com/EdnaMcConnellClarkFoundation/ _blank
+			postCObject.value = <i class="icon-facebook"></i>
+		}
+
+	}
+}
+
+# Hero for staff pages includes profile image from page resources and bio from subheader
+[globalVar = TSFE:page|doktype = 102]
+lib.secondaryNav >
+lib.tertiaryNav.20 >
+lib.preContent = COA
+lib.preContent {
+	stdWrap.wrap =  <div class="csc-typography"><figure class="avatar-full">|</figure></div>
+	10 = IMG_RESOURCE
+	10 {
+		file {
+			import.data = levelmedia:-1
+			import.listNum = 0
+			treatIdAsReference = 1
+		}
+		stdWrap.dataWrap = <img src="|" alt="Photo of {tsfe:page|title}">
+	}
+	20 = TEXT
+	20 {
+		stdWrap.outerWrap = <figcaption class="avatar-full-title">|</figcaption>
+		stdWrap.dataWrap =  <h1 class="heading-primary">{tsfe:page|title}</h1> <p class="copy-giant align-center">{tsfe:page|subtitle}</p>|
+	}
+}
+
+page.10.templates.6.constants.noHero = 1
+page.10.templates.6.constants.noSharing = 1
+page.10.templates.6.constants.displayNews = 1
+page.10.templates.1.constants.noHero = 1
+page.10.templates.1.constants.noSharing = 1
+[end]
+
+# A few changes for utility pages
+[PIDinRootline = {$pid.utility}]
+lib.tertiaryNav >
+[end]
+
+[PIDinRootline = {$pid.notFound}]
+page.10.templates.6.constants.noHero = 1
+page.10.templates.6.constants.noSharing = 1
+page.10.templates.1.constants.noHero = 1
+page.10.templates.1.constants.noSharing = 1
+[end]
+
+# Use a smaller, left-aligned title on the news detail page
+[page|uid={$pid.newsSingle}]
+page.10.templates.1.constants.leftHeroTitle = 1
+[end]
+
+# Show a typo3 4.5-style notice for editors in draft workspaces
+[globalVar = TSFE:fePreview > 0]
+	page.1 = TEXT
+	page.1.value (
+	<div style="background:red;color:black;font-weight:bold;border:3px black solid;padding:10px;z-index:1000;position:absolute;top:10px;right:10px;">
+		Draft Preview Mode
+	</div>
+	)
+[end]

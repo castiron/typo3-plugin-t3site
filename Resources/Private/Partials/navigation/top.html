@@ -1,0 +1,23 @@
+<f:comment>
+	<!-- Primary navigation banner -->
+</f:comment>
+<div class="fixed-nav" data-nav-banner>
+	<div class="container-max">
+		<f:render partial="header/logo" />
+		<f:render partial="header/page_title" />
+
+		<f:comment>
+			<!-- Skip link for screen-readers. Link name can change as long as it has an anchor above the main content -->
+		</f:comment>
+		<a class="screen-reader-text" href="#skip-content">Skip to content</a>
+		<nav class="nav-primary-first-wide">
+			<ul>
+				<f:CObject typoscriptObjectPath="lib.primaryNav"/>
+			</ul>
+		</nav>
+		<button class="button-hamburger" data-nav-toggle>
+			<i class="icon-hamburger"></i>
+			<span class="screen-reader-text">Click to open the navigation menu</span>
+		</button>
+	</div>
+</div><!-- End of .fixed-nav -->

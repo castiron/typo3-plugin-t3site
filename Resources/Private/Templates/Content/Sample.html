@@ -1,0 +1,7 @@
+<div style="border: 1px solid #999; background-color: #CCC; padding: 10px; border-radius: 5px;">
+	<div style="font-weight: bold; margin-bottom: 10px;"  class="header"><f:CObject typoscriptObjectPath="plugin.tx_t3site.markers.header" data="{data}" /></div>
+	<f:if condition="{image.fullPath}">
+		<f:image src="{image.fullPath}" alt="{image.title}" width="248"/>
+	</f:if>
+	<div class="inner"><f:CObject typoscriptObjectPath="plugin.tx_t3site.markers.bodytextRTE" data="{data}" /></div>
+</div>

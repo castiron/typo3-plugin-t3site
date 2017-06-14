@@ -1,0 +1,137 @@
+plugin.tx_seobasics >
+plugin.tx_seobasics = COA
+plugin.tx_seobasics {
+
+	# Append a line break for every header tag
+	5 = TEXT
+	5.value (
+
+
+)
+
+	# Our page title config overrides hard-coded config from seo_basics extension
+	# Back up the original config (it's the basis for other tags, like 'keywords')
+	2001 < .20
+	20 >
+
+	#################
+	# Page title + meta[name="title"] tag are both configured here
+	#################
+	# Page title (auto-generated)
+	20 = COA
+	20 {
+		stdWrap.if.isFalse.field = tx_seo_titletag
+		wrap = <meta name="title" content="|" />
+		5 = USER
+		5 {
+			userFunc = CIC\T3site\Utility\General->getNewsTitleForPage
+			stdWrap {
+				noTrimWrap = || - |
+				required = 1
+			}
+		}
+		10 = HMENU
+		10 {
+			special = rootline
+			special.range = 1|-1
+			special.reverseOrder = 1
+			includeNotInMenu = 1
+			1 = TMENU
+			1 {
+				NO {
+					stdWrap.field = nav_title // title
+					linkWrap = | - ||*|| - ||*||
+					doNotLinkIt = 1
+				}
+			}
+		}
+		20 = TEXT
+		20 {
+			stdWrap.noTrimWrap = | - ||
+			value = {$const.siteName}
+		}
+	}
+	20.stdWrap.append < .5
+
+	# Page title (if override provided)
+	21 = TEXT
+	21 {
+		if.isTrue.field = tx_seo_titletag
+		field = tx_seo_titletag
+		wrap = <meta name="title" content="|" />
+	}
+	21.stdWrap.append < .5
+
+	# Page title (overrides hard-coded config from seo_basics extension)
+	60 >
+
+	60 < .20
+	60.wrap = <title>|</title>
+	60.stdWrap.append < .5
+
+	61 < .21
+	61.wrap = <title>|</title>
+	61.stdWrap.append < .5
+	#################
+	# END: Page title + meta[name="title"] tag
+	#################
+
+	#################
+	# Building the Keywords tag
+	#################
+	30 = TEXT
+	30 < .2001
+	30.data = page:keywords
+	30.stdWrap.noTrimWrap = {$plugin.tx_seo.keywordsWrap}
+	30.stdWrap.stdWrap >
+	30.required = 1
+	30.wrap = <meta name="keywords" content="|" />
+
+	#################
+	# Building the Description tag
+	#################
+	40 = TEXT
+	40 < .2001
+	40.data = page:description
+	40.stdWrap.noTrimWrap = {$plugin.tx_seo.descriptionWrap}
+	40.wrap = <meta name="description" content="|" />
+
+	#################
+	# Building the date tag (last changed)
+	#################
+	50 = TEXT
+	50 < .2001
+	50.data = page:SYS_LASTCHANGED // page:crdate
+	50.date = Y-m-d
+	50.stdWrap >
+	50.wrap = <meta name="date" content="|" />
+}
+
+# Include sitemap.xml
+includeLibs.tx_seobasics_sitemap = EXT:seo_basics/class.tx_seobasics_sitemap.php
+tx_seo_xmlsitemaps = PAGE
+tx_seo_xmlsitemaps {
+	typeNum = 776
+	config.disableAllHeaderCode = 1
+	config.renderCharset = UTF-8
+	config.xmlprologue = xml_10
+	config.additionalHeaders = Content-type: text/xml
+	10 = USER
+	10.userFunc = tx_seobasics_sitemap->renderXMLSitemap
+}
+
+plugin.tx_seobasicspluginsitemap {
+	extensions {
+		news {
+			detailPid = {$pid.newsSingle}
+			table = tx_news_domain_model_news
+			additionalParams {
+				1 = tx_news_pi1[news]=$uid
+			}
+			fields {
+				uid = uid
+				tstamp = tstamp
+			}
+		}
+	}
+}

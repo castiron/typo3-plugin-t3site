@@ -1,0 +1,24 @@
+{
+  "name": "castiron/typo3-plugin-t3site",
+  "description": "Basis templates and config for a TYPO3 site",
+  "type": "typo3-cms-extension",
+  "authors": [
+    {
+      "name": "Gabe Blair",
+      "email": "gabe@castironcoding.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "CIC\\T3site\\": "Classes"
+    }
+  },
+  "replace": {
+    "t3site": "self.version"
+  },
+  "require": {
+    "castiron/typo3-icons": "^0.0",
+    "helhum/dotenv-connector": "^2.0",
+    "helhum/config-loader": "^0.5"
+  }
+}

@@ -1,0 +1,20 @@
+<f:if condition="{page.abstract}">
+    <meta name="abstract" content="{page.abstract}">
+</f:if>
+<f:if condition="{page.author}">
+    <meta name="author" content='{page.author} <f:if condition="{page.author_email}">({page.author_email})</f:if>'>
+</f:if>
+<f:if condition="{page.keywords}">
+    <meta name="keywords" content="{page.keywords}">
+</f:if>
+<f:if condition="{page.description}">
+    <meta name="description" content="{page.description}">
+</f:if>
+<meta name="copyright" content="© <f:format.date format='Y'>now</f:format.date>, the Edna McConnell Clark Foundation">
+
+<f:if condition="{page.description}">
+    <meta property="og:description" content="{page.description}">
+</f:if>
+<f:if condition="{page.media}">
+    <meta property="og:image" content="{f:uri.image(src: page.media)}">
+</f:if>

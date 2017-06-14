@@ -1,0 +1,143 @@
+<h1 class="page-header">Form Styles</h1>
+<ul class="unstyled">
+	<li class="well alert-error">This is a flash message.  There was a problem with your registration.  Please review the errors below, correct, and re-submit the form.</li>
+</ul>
+<form method="post" action="">
+	<div class="row row-flush">
+		<div class="span4">
+			<div class="input control-group error">
+				<label for="example-firstName">First Name: </label>
+				<input id="example-firstName" type="text" class="span4" name="tx_mis_plugins_create[something][firstName]" value="Gusha Gimli"/>
+				<div class="help-block message error">First Name cannot be "Gusha Gimli"</div>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="input control-group">
+				<label for="example-lastName">Last Name: </label>
+				<input id="example-lastName" type="text" class="span4" name="tx_mis_plugins_create[something][lastName]" />
+			</div>
+		</div>
+	</div>
+	<div class="row row-condensed">
+		<div class="span4">
+			<div class="input control-group">
+				<label for="example-password">Password:</label>
+				<input id="example-password" class="span4" type="password" name="tx_mis_plugins_create[something][password]" value="" />
+				<div class="help-block message error"></div>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="input control-group">
+				<label for="example-confirmPassword">Confirm Password:</label>
+				<input id="example-confirmPassword" type="password" class="span4" name="tx_mis_plugins_create[something][confirmPassword]" value="" />
+				<div class="help-block message"></div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span4">
+			<label for="example-dropdown">A dropdown:</label>
+			<div class="input control-group">
+				<select id="example-dropdown" class="span4" name="bleh">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+				<div class="help-block message">This message accompanies the field above</div>
+			</div>
+		</div>
+		<div class="span4">
+			<h4 class="flush">Select some things:</h4>
+			<div class="input">
+				<ul class="unstyled">
+					<li>
+						<label class="checkbox">
+							<input type="checkbox" value="value1" name="optionsCheckboxes">
+							This is a checkbox
+						</label>
+					</li>
+					<li>
+						<label class="checkbox">
+							<input type="checkbox" value="value2" name="optionsCheckboxes">
+							This is another checkbox with quite a bit more text
+						</label>
+					</li>
+				</ul>
+				<div class="help-block message error"></div>
+			</div>
+
+			<h4 class="flush">Select some other things:</h4>
+			<div class="input">
+				<ul class="unstyled">
+					<li>
+						<label class="radio">
+							<input type="radio" value="value1" name="optionsCheckboxes">
+							This is a radio
+						</label>
+					</li>
+					<li>
+						<label class="radio">
+							<input type="radio" value="value2" name="optionsCheckboxes">
+							This is another radio with quite a bit more text
+						</label>
+					</li>
+				</ul>
+				<div class="help-block message error"></div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span8">
+			<div class="input control-group">
+				<label for="example-email">Email Address: </label>
+				<input id="example-email" type="text" class="span8" name="tx_mis_plugins_create[something][email]" />
+				<div class="help-block message error">Your email address should be a string with letters in it</div>
+			</div>
+		</div>
+	</div>
+	<h3 class="header-standard">Top to Bottom</h3>
+	<p>You can place check/radios in columns by using the bootstrap grid and <code>&lt;ul class="unstyled"&gt;</code></p>
+	<div class="row">
+		<div class="span4">
+			<h4>Amet Dolor</h4>
+			<div class="input">
+				<ul class="unstyled">
+					<li><label class="checkbox"><input type="checkbox" value="value1" name="optionsCheckboxe2">Vitae Felis Vestibulum</label></li>
+					<li><label class="checkbox"><input type="checkbox" value="value2" name="optionsCheckboxe2">Cum Sociis NatoqueVenenatis In, Tristique Eu</label></li>
+					<li><label class="checkbox"><input type="checkbox" value="value3" name="optionsCheckboxe2">Est Nunc</label></li>
+					<li><label class="checkbox"><input type="checkbox" value="value4" name="optionsCheckboxe2">Venenatis In, Tristique Eu</label></li>
+					<li><label class="checkbox"><input type="checkbox" value="value5" name="optionsCheckboxe2">Cum Sociis Natoque Venenatis In, Tristique Eu</label></li>
+				</ul>
+			</div>
+		</div>
+		<div class="span4">
+			<h4>Lorem Ipsum</h4>
+			<div class="input">
+				<ul class="unstyled">
+					<li><label class="radio"><input type="radio" value="value1" name="optionsRadios">Vitae Felis Vestibulum</label></li>
+					<li><label class="radio"><input type="radio" value="value2" name="optionsRadios">Volutpat Etiam</label></li>
+					<li><label class="radio"><input type="radio" value="value3" name="optionsRadios">Est Nunc</label></li>
+					<li><label class="radio"><input type="radio" value="value4" name="optionsRadios">Venenatis In, Tristique Eu</label></li>
+					<li><label class="radio"><input type="radio" value="value5" name="optionsRadios">Cum Sociis Natoque</label></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span8">
+			<div class="input control-group">
+				<label for="test-123" class="header-standard">A text area</label>
+				<textarea name="test" class="span8" id="test-123"></textarea>
+				<div class="help-block message">This field should be populated with whatever text you like</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="input span8">
+			<input class="btn" type="submit" name="" value="Create Account" />
+			<button class="btn" type="reset">Cancel</button>
+		</div>
+	</div>
+</form>

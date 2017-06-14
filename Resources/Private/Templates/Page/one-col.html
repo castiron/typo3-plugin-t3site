@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]>      <html class="no-js lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js ie9"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Static - Example template</title>
+</head>
+{namespace fp=Tx_Fluidpage_ViewHelpers}
+{namespace a=CIC\Cicassetpipeline\ViewHelper}
+<!-- ###LAYOUT### -->
+<f:comment><!-- CSS is added to AdditionalHeaderData this way: --></f:comment>
+<a:asset.includeCssFromDistFile distFile="../dist-main.json" />
+<body>
+<f:if condition="{0:constants.environment} == {0:'production'}">
+	<f:render partial="tracking/google" />
+</f:if>
+<f:comment>
+	<!--
+	  Container window wraps the entire site, so that the sidebar tray can span the full length of the site
+	-->
+</f:comment>
+<div class="container-window" data-site-nav>
+	<f:render partial="header" />
+
+	<div class="container-page" data-page-container>
+		<f:if condition="{constants.noHero}">
+			<f:else>
+				<f:render partial="hero" arguments="{heroImage: heroImage, constants: constants}" />
+			</f:else>
+		</f:if>
+
+		<a name="main-content"></a>
+		<main class="container-max{f:if(condition:'{constants.noHero}', then:' no-hero')}">
+			<f:render partial="navigation/secondary" arguments="{constants:constants}" />
+			<f:if condition="{constants.noSharing}">
+				<f:else>
+					<f:render partial="navigation/share" />
+				</f:else>
+			</f:if>
+			<f:comment><!-- Container-63 is a 63% width responsive container: Holds default RTE content --></f:comment>
+			<section class="{f:if(condition:'{constants.containerClass}', then:'{constants.containerClass}', else:'container-63')}">
+				<f:if condition="{constants.showStaffAuthor}">
+					<f:render partial="author" arguments="{staffAuthor: staffAuthor, staffImage: staffImage, articleDate: articleDate}"/>
+				</f:if>
+
+				<f:cObject typoscriptObjectPath="lib.preContent" />
+				<fp:content colPos="0" />
+			</section>
+			<f:if condition="{constants.freeformBottomContentColPos}">
+				<fp:content colPos="{constants.freeformBottomContentColPos}" />
+			</f:if>
+			<f:if condition="{page.tx_t3site_no_sliding_content}">
+				<f:else>
+					<fp:content colPos="3" slide="-1" searchIndexWrap="0"/>
+				</f:else>
+			</f:if>
+		</main>
+
+		<f:render partial="footer" />
+	</div><!-- End of .container-page -->
+</div><!-- End of .container-window -->
+
+<f:render partial="scripts" />
+</body>
+<!-- ###LAYOUT### -->
+</html>

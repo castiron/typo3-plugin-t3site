@@ -1,0 +1,139 @@
+#########
+# LOGIN
+#########
+plugin.tx_felogin_pi1 {
+	templateFile = EXT:t3site/Resources/Private/ExtensionTemplates/felogin.html
+	storagePid = {$pid.userStorage}
+	feloginBaseURL = {$const.baseUrl}/
+	wrapContentInBaseClass = 1
+	domains = {$login.domains}
+	preserveGETvars = all
+	showForgotPasswordLink = 1
+	showPermaLogin = 1
+	forgotLinkHashValidTime = 12
+	newPasswordMinLength = 6
+	welcomeHeader_stdWrap {
+		wrap = <h1>|</h1>
+	}
+	welcomeMessage_stdWrap {
+		wrap = <p class="felogin-message welcome">|</p>
+	}
+
+	successHeader_stdWrap {
+		wrap = <h1>|</h1>
+	}
+	successMessage_stdWrap {
+		wrap = <p class="felogin-message success">|</p>
+	}
+
+	logoutHeader_stdWrap {
+		wrap = <h1>|</h1>
+	}
+	logoutMessage_stdWrap {
+	    wrap = <p class="felogin-message logout">|</p>
+	}
+
+	errorHeader_stdWrap {
+	    wrap = <h1>|</h1>
+	}
+	errorMessage_stdWrap {
+        wrap = <p class="felogin-message error">|</p>
+	}
+
+	forgotHeader_stdWrap {
+        wrap = <h1>|</h1>
+	}
+	forgotMessage_stdWrap {
+        wrap = <p class="felogin-message forgot">|</p>
+	}
+
+	changePasswordHeader_stdWrap {
+        wrap = <h1>|</h1>
+	}
+	changePasswordMessage_stdWrap {
+        wrap = <p class="felogin-message changePass">|</p>
+	}
+
+	cookieWarning_stdWrap {
+        wrap = <p class="felogin-message warning">|</p>
+	}
+
+	# stdWrap for fe_users fields used in Messages
+	userfields {
+		username {
+			htmlSpecialChars = 1
+			wrap = <strong>|</strong>
+		}
+	}
+
+		#redirect
+	redirectMode =
+	redirectFirstMethod =
+	redirectPageLogin =
+	redirectPageLoginError =
+	redirectPageLogout =
+
+	#disable redirect with one switch
+	redirectDisable =
+
+	email_from =
+	email_fromName =
+	replyTo =
+
+	# Allowed Referrer-Redirect-Domains:
+	domains =
+
+	dateFormat = m/d/Y H:i
+}
+
+plugin.tx_felogin_pi1._LOCAL_LANG.default {
+    ll_welcome_header = Sign In
+    ll_welcome_message = Welcome back! Please enter your username and password below.
+    ll_logout_header = Sign In.
+    ll_logout_message = You have successfully signed out. If you would like to sign in again, please enter your username and password below.
+    ll_error_header = Sign In
+    ll_error_message = Sorry, but we didn't recognize your username or password. If you don't have an account, click "sign up" above.
+    ll_success_header = You Are Signed In
+    ll_success_message = You are now signed in as '###USER###'
+    ll_status_header = You Are Signed In
+    ll_status_message = This is your current status:
+    cookie_warning = Warning: There is a possibility that cookies are not enabled in your web browser. Please configure your browser to accept cookies from this site.
+	username = Username:
+    password = Password:
+    login = Sign In
+    permalogin = Keep me signed in
+    logout = Logout
+    send_password = Send password
+    reset_password = Reset Password
+    ll_change_password_header = Enter New Password
+    ll_change_password_message = Please enter your new password twice. Passwords must be at least %s characters long.
+	ll_change_password_notvalid_message = The link you clicked is not valid. Please repeat the forgot message procedure.
+	ll_change_password_notequal_message = The passwords are not equal, please enter your new password twice. Password needs a minimum length of %s chars.
+	ll_change_password_tooshort_message = The password length is too short. Please enter your new password twice. Password needs a minimum length of %s chars.
+	ll_change_password_done_message = Your password has been saved. You can now login with your new password.
+	change_password = Change your password
+	newpassword_label1 = Enter new password
+	newpassword_label2 = Repeat new password
+	your_email = Your Email:
+	ll_forgot_header = Forgot Your Password?
+	ll_forgot_reset_message = Provide your email address and we will send you a link to reset your password.
+	ll_forgot_reset_message_emailSent = An email has been sent to your email address. You will receive an email from us in the next few minutes with instructions to reset your password. For security purposes, the email will expire within twelve hours.
+	ll_forgot_header_backToLogin = Return to login form
+	ll_enter_your_data = Username or email address:
+    ll_forgot_email_nopassword (
+        Your password
+        Hi %s
+
+        We couldn't find a username for this email address and so cannot send the password to you. Probably you misspelled the email address (upper/lower case makes a difference) or maybe you even didn't register yet?
+    )
+    ll_forgot_validate_reset_password (
+Your new password
+Dear %s,
+
+This email was sent in response to your request to reset your password. Please click on the link below in order to
+
+http://%s
+
+For security reasons, this link is only active until %s.
+    )
+}

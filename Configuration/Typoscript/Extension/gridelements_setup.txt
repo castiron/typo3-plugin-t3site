@@ -1,0 +1,71 @@
+tt_content.gridelements_pi1 >
+tt_content.gridelements_pi1 = COA
+tt_content.gridelements_pi1 {
+	10 = USER
+	10 {
+		userFunc = GridElementsTeam\Gridelements\Plugin\Gridelements->main
+		setup {
+			default {
+				columns {
+					default {
+						renderObj = COA
+						renderObj {
+							10 = LOAD_REGISTER
+							20 =< tt_content
+							30 = RESTORE_REGISTER
+						}
+						wrap = |
+					}
+				}
+				stdWrap {
+					dataWrap = <div class="grid-columns {field:flexform_gridclass}">|</div>
+				}
+			}
+
+			bare < .default
+			bare {
+				stdWrap {
+					dataWrap = |
+				}
+			}
+
+			# Section
+			extbaseController < .bare
+			extbaseController {
+				stdWrap {
+					cObject = USER
+					cObject {
+						userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+						pluginName = CIC.GridelementSupport
+						vendorName = CIC
+						extensionName = T3site
+						switchableControllerActions {
+							Gridelements {
+								1 = section
+							}
+						}
+					}
+				}
+			}
+
+			# Callout
+			2 < .bare
+			2 {
+				stdWrap {
+					cObject = USER
+					cObject {
+						userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+						pluginName = CIC.GridelementSupport
+						vendorName = CIC
+						extensionName = T3site
+						switchableControllerActions {
+							Gridelements {
+								1 = callout
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,42 @@
+################
+## Pid Variables
+################
+pid {
+	newsStorage = 10
+	newsSingle = 83
+}
+
+# Image max width in content elements (Text, Text w/ Image)
+styles.content.imgtext {
+	# This needs to be the full max width of your biggest content element column
+	# It gets auto-halved for text w/image content where the image is to the side of the copy...
+	maxW = 1224
+	maxWInText = 1224
+}
+
+################
+## Other constants
+################
+const {
+	defaultFormRecipientEmail = contact@castironcoding.com
+	defaultFormRecipientName = Contact Form Recipient
+	siteName = T3Site
+	maxImageWidth {
+		left = 157
+		right = 166
+		normal = 366
+		border = 200
+	}
+}
+
+################
+## Plugin constants
+################
+
+# SEO BASICS
+plugin.tx_seo {
+	titleWrap = |||
+	keywordsWrap = |||
+	descriptionWrap = |||
+	titleWrapAppendSiteTitle = 1
+}

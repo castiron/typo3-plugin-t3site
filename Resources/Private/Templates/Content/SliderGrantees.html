@@ -1,0 +1,41 @@
+{namespace c=CIC\Cicbase\ViewHelpers}
+
+<div class="stripe-neutral stripe-break no-print">
+	<f:if condition="{header}">
+		<h3 class="heading-tertiary">
+			{header}
+		</h3>
+	</f:if>
+	<ul class="article-list-logo-slider" data-content-slider>
+		<f:for each="{grantees}" as="page" iteration="iterator">
+			<li>
+				<c:typolink parameter="{page.uid}">
+					<figure>
+						<div class="article-list-logo-wrapper">
+							<f:if condition="{page.tx_t3site_logo}">
+								<f:then>
+									<img src="/fileadmin{page.tx_t3site_logo.identifier}" alt="{page.title}"/>
+								</f:then>
+								<f:else>
+									<f:if condition="{page.nav_title}">
+										<f:then>
+											<h3>{page.nav_title}</h3>
+										</f:then>
+										<f:else>
+											<h3>{page.title}</h3>
+										</f:else>
+									</f:if>
+								</f:else>
+							</f:if>
+						</div>
+					</figure>
+					<figcaption>
+						{page.tx_emcfgrantees_description}
+					</figcaption>
+				</c:typolink>
+			</li>
+		</f:for>
+	</ul>
+</div>
+
+

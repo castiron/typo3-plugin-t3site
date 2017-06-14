@@ -1,0 +1,90 @@
+plugin.Tx_Formhandler.settings.predef.general_contact {
+	name = {$const.siteName} General Contact Form
+	debug = 0
+	addErrorAnchors = 0
+	templateFile = EXT:t3site/Resources/Private/ExtensionTemplates/Formhandler/contact.html
+	langFile.1 = EXT:t3site/Resources/Private/Language/locallang_formhandler.xml
+	formValuesPrefix = formhandler
+	# HTML wrapping by validation error
+	errorListTemplate {
+		totalWrap = <ul>|</ul>
+	}
+	singleErrorTemplate {
+		singleWrap = <span class="error">|</span><br />
+	}
+
+	# File configuration
+	singleFileMarkerTemplate {
+		totalWrap = <ul>|</ul>
+		singleWrap = <li style="color:maroon;">|</li>
+	}
+	totalFilesMarkerTemplate {
+		totalWrap = <ul>|</ul>
+		singleWrap = <li style="color:red;">|</li>
+	}
+	# Validators configuration
+	validators {
+		1 {
+			class = Tx_Formhandler_Validator_Default
+			config {
+				fieldConf {
+					f_first_name {
+						errorCheck.1 = required
+					}
+					f_last_name {
+						errorCheck.1 = required
+					}
+					f_email {
+						errorCheck.1 = required
+						errorCheck.2 = email
+					}
+					f_message {
+						errorCheck.1 = required
+					}
+				}
+			}
+		}
+	}
+
+	# Interceptors configuration
+	initInterceptors {
+	}
+
+	# Loggers configuration
+	loggers {
+		1 {
+			class = Tx_Formhandler_Logger_DB
+		}
+	}
+
+	# Finishers configuration
+	finishers {
+		2.class = Tx_Formhandler_Finisher_Mail
+		2.config {
+			limitMailsToUser = 5
+			admin {
+				to_email = {$const.defaultFormRecipientEmail}
+				to_name = {$const.defaultFormRecipientName}
+				subject = Contact Form Inquiry Submitted
+				sender_email = email
+				sender_name = f_first_name
+				replyto_email = {$const.defaultFormRecipientEmail}
+				replyto_name = {$const.defaultFormRecipientName}
+			}
+			user {
+				to_email = f_email
+				to_name = f_first_name
+				subject = Your {$const.siteName} Contact Form Submission
+				sender_email = {$const.defaultFormRecipientEmail}
+				sender_name = {$const.defaultFormRecipientName}
+				replyto_email = {$const.defaultFormRecipientEmail}
+				replyto_name = {$const.defaultFormRecipientEmail}
+				replyto_name.value = {$const.defaultFormRecipientEmail}
+			}
+		}
+		3.class = Tx_Formhandler_Finisher_SubmittedOK
+		3.config {
+			returns = 1
+		}
+	}
+}

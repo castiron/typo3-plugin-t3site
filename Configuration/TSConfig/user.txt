@@ -1,0 +1,41 @@
+# Admin
+# options.dontMountAdminMounts = 1
+
+# Regular users
+options.clearCache.pages = 1
+options.clearCache.all = 1
+options.enableBookmarks = 0
+options.createFoldersInEB = 1
+options.saveDocNew = 1
+options.saveDocView = 0
+
+# options.pageTree.showPageIdWithTitle = 1
+option.pageTree.showNavTitle = 1
+options.file_list.enableDisplayThumbnails = 1
+
+# enable upload-image-field in rte
+options.uploadFieldsInTopOfEB = 1
+
+# enable create-folder-field in rte
+options.createFoldersInEB = 1
+
+# Set workspace preview link TTL
+options.workspaces.previewLinkTTLHours = 128
+
+# Useful for hiding some specific records
+# in this case, 12 is the uid of the record you want to hide.
+options.hideRecords.[table] = 12
+
+admPanel {
+	enable.edit = 1
+	module.edit.forceDisplayFieldIcons = 1
+	hide = 1
+}
+
+# Set workspace preview link TTL
+#options.workspaces.previewLinkTTLHours = 336
+
+permissions.file.default.browseFolder = 1
+
+admPanel.hide = 1
+admPanel.override.tsdebug.forceTemplateParsing = 1

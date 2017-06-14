@@ -1,0 +1,20 @@
+<footer class="footer">
+  <div class="container-max">
+    <!-- NB: Logo should link back to homepage -->
+    <f:link.page pageUid="1" class="logo-secondary">
+      <img class="svg" src="/typo3conf/ext/t3site/Resources/Public/Dist/Images/logo-white.svg" alt="Logo for the Edna McConnell Clark Foundation"/>
+      <img class="no-svg-fallback" src="/typo3conf/ext/t3site/Resources/Public/Dist/Images/logo-white-fallback.png" alt="Logo for the Edna McConnell Clark Foundation"/>
+    </f:link.page>
+
+    <section class="footer-right">
+      <f:render partial="footer/social" arguments="{placement:'above'}"/>
+      <f:render partial="footer/email_signup"/>
+      <f:render partial="footer/social"/>
+    </section>
+
+    <section class="colophon">
+      <em>&copy; <f:format.date format="Y">now</f:format.date> Edna McConnell Clark Foundation. All Rights Reserved.</em>
+      <f:render partial="navigation/colophon"/>
+    </section>
+  </div><!-- End of a .container-max -->
+</footer>

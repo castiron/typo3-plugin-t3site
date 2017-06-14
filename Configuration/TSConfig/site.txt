@@ -1,0 +1,167 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:typo3conf/ext/t3site/Configuration/TSConfig/gridelements.txt">
+
+TCEMAIN {
+	# Set default permissions for pages. We tend to limit access to pages using
+	# page mounts on backend user groups. We find that the permissions settings in the
+	# access module tend to cause confusion, and that it's better to just let users edit
+	# any page in the tree to which they have access via a mount. Therefore, we set very
+	# permissive permissions by default.
+	permissions {
+
+		# 1 is the CIC user
+		userid = 1
+
+		# 1 would be the default group
+		groupid = 1
+
+		# we effectively disable the permission system here
+		user = show,edit,delete,new,editcontent
+		group = show,edit,delete,new,editcontent
+		everybody = show,edit,delete,new,editcontent
+
+	}
+
+	# No annoying copy messages on elements. Our editors hate them, and it seems to be
+	# sufficient to just set new records to hidden.
+	table.pages {
+		disablePrependAtCopy = 1
+		disableHideAtCopy = 0
+	}
+
+	table.tt_content {
+		disablePrependAtCopy = 1
+		disableHideAtCopy = 0
+	}
+}
+
+#################################################
+# Default TCA Values:
+#################################################
+TCAdefaults.tx_news_domain_model_media {
+	# This is handy in the latest version of news
+	showinpreview = 1
+}
+
+#################################################
+# Table and field specific configuration
+#################################################
+TCEFORM {
+
+	# Header markup is often not tightly coupled with header look and feel. For many of our users, header
+	# tag choice is an SEO concern, whereas how the header displays is a design concern. For this reason,
+	# we have a little extension that provides users with a header style field. We declare the available
+	# stylers here.  Styles are woven in, in:
+	#  EXT:t3site/Resources/Typoscript/Extension/css_styled_content_setup.txt
+	tt_content.tx_t3site_header_styles {
+		addItems.default = Default
+	}
+
+	# In our experience, the "default" header option is confusing, and most of our editors
+	# seem to understand what an H1, H2, etc is, so we change the labels in the header dropdown.
+	tt_content {
+		# Hide item 0 to remove the "Default" option, which is just the same as H1, unless you need to otherwise specify.
+	 	header_layout.removeItems = 0
+		header_layout.altLabels.1 = H1
+		header_layout.altLabels.2 = H2
+		header_layout.altLabels.3 = H3
+		header_layout.altLabels.4 = H4
+		header_layout.altLabels.5 = H5
+		# Remove default Indentation & Frames and add our own - See css_styled_content_setup
+		section_frame {
+			removeItems = 1, 5, 6, 10, 11, 12, 20, 21, 66
+			addItems {
+				100 = Video preview image
+			}
+		}
+	}
+
+}
+
+#################################################
+# Configure the page module
+#################################################
+mod.web_layout {
+
+	# Remove buttons that clutter the page module UI as well as the searchbox that often doesn't work correctly.
+	disableSearchBox = 1
+	disableBigButtons = 1
+	disableIconToolbar = 1
+
+	# Disable useless page module views
+	function {
+		# Disable QuickEdit view. Does anyone actually use this confusing interface?
+		0 = 0
+		# Enable columns view
+	  	1 = 1
+		# Enable languages view (it will be hidden on sites without multiple languages)
+		2 = 1
+		# Disable page information view, which is next-to-useless and ought to be incorporated into the info module (or vice versa)
+		3 = 0
+		# Enable the grid view
+		4 = 1
+	}
+
+}
+
+#################################################
+# Configure the list module
+#################################################
+mod.web_list {
+
+	# Useful on pages with lots of different sorts of records; we don't use it, but it's here so we don't forget the setting exists.
+	listOnlyInSingleTableView = 0
+
+	# Hide records that are handled via relations or IRRE; add your own to the list.
+	hideTables = tx_news_domain_model_file,tx_news_domain_model_media,tx_news_domain_model_link
+
+	# Make the list module behave sensibly. When people click on titles in lists, they expect to drill down to an edit view.
+	# Without this setting, page records in the list module respond to a click (by changing the selected page in the tree) and other
+	# records don't respond at all to clicks. This UI inconsistency is clever, but ill-advised, so we make clicks on any record
+	# in the list module lead to the edit view for that record.
+	clickTitleMode = edit
+}
+
+
+#################################################
+# Set new content element render mode to tabs and store and clear the wizard conf
+#################################################
+mod.wizards.newContentElement.renderMode = tabs
+tmp.wizards < mod.wizards.newContentElement.wizardItems
+mod.wizards.newContentElement.wizardItems >
+
+#################################################
+# We reorganize the TYPO3 content element wizard a bit so it's easier to use
+# Define custom content elements in the "client" tab below.
+#################################################
+mod.wizards.newContentElement.wizardItems {
+	common < tmp.wizards.common
+	common.elements {
+		html < tmp.wizards.special.elements.html
+		media < tmp.wizards.special.elements.media
+		menu < tmp.wizards.special.elements.menu
+		uploads < tmp.wizards.special.elements.uploads
+	}
+
+	common.show = text,textpic,image,html,media,menu,uploads
+	common.header = Core Elements
+
+	# This won't work out of the box without CIC's custom content element setup. However, it's a good example of
+	# how you can add your own content elements to the new content element wizard.
+	client {
+		header = Custom Elements
+		elements {
+			t3site_mirror {
+			    title = Mirror content
+			    description = Mirrors content from the same content area on another page of your choice
+			    icon = gfx/c_wiz/user_defined.dif
+			    tt_content_defValues {
+			        CType = t3site_mirror
+			    }
+			}
+		}
+		show = *
+	}
+
+	plugins < tmp.wizards.plugins
+	plugins.header = Advanced Elements
+}
