@@ -17,7 +17,6 @@
     "t3site": "self.version"
   },
   "require": {
-    "castiron/typo3-icons": "^0.0",
     "helhum/dotenv-connector": "^2.0",
     "helhum/config-loader": "^0.5"
   }
