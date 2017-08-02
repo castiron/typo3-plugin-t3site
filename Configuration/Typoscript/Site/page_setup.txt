@@ -1,0 +1,54 @@
+t3site.page_prototype = PAGE
+t3site.page_prototype {
+    # pageTitle: NB: page title is configured in seo_basics_setup.txt
+
+    typeNum = 0
+
+    # Unset the body tag, as it's is provided by the fluid template
+    bodyTagCObject = TEXT
+    bodyTagCObject.noTrimWrap = | | |
+
+    includeCSS {
+
+    }
+    includeJS {
+
+    }
+    includeJSFooterlibs {
+        # NOTE: js should generally be included by a partial (by default, "page_scripts.html")
+    }
+    includeJSFooter {
+        # NOTE: js should generally be included by a partial (by default, "page_scripts.html")
+    }
+    footerData {
+        # NOTE: js should generally be included by a partial (by default, "page_scripts.html")
+    }
+
+    meta {
+        viewport = width=device-width, initial-scale=1, user-scalable=0
+        description.field = description
+        keywords.field = keywords
+        author.field = author
+        abstract.field = abstract
+        copyright = TEXT
+        copyright {
+            data = date:U
+            strftime = %Y
+            wrap = ©|, My Organization
+        }
+    }
+
+    headerData {
+
+        # Favicon and mobile icon
+        10 = TEXT
+        10 {
+            value (
+				<link rel="shortcut icon" href="typo3conf/ext/{$theme.name}/Resources/Images/Icons/favicon.ico">
+				<link rel="apple-touch-icon" href="typo3conf/ext/{$theme.name}/Resources/Images/Icons/apple-touch-icon.png">
+            )
+        }
+
+        776 < plugin.tx_seobasics
+    }
+}
