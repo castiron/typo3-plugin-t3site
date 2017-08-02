@@ -44,8 +44,8 @@ t3site.page_prototype {
         10 = TEXT
         10 {
             value (
-				<link rel="shortcut icon" href="typo3conf/ext/{$theme.name}/Resources/Images/Icons/favicon.ico">
-				<link rel="apple-touch-icon" href="typo3conf/ext/{$theme.name}/Resources/Images/Icons/apple-touch-icon.png">
+				<link rel="shortcut icon" href="typo3conf/ext/{$theme.name}/Resources/Public/Images/Icons/favicon.png">
+				<link rel="apple-touch-icon" href="typo3conf/ext/{$theme.name}/Resources/Public/Images/Icons/apple-touch-icon.png">
             )
         }
 
